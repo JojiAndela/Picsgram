@@ -1,0 +1,7 @@
+
+      h2.subtitle Pending Requests
+      = render(partial: "incoming_request", collection: @incoming) || "No pending requests."
+
+
+      h2.subtitle Sent Requests
+      = render(partial: "outgoing_request", collection: @outgoing) || "No sent requests."

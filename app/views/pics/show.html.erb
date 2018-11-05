@@ -1,0 +1,43 @@
+<div class="center-block" style="margin-top:100px; width:400px;">
+<div class="panel panel-default" style="border-radius:10px">
+  <div class="panel-heading">
+      <%= image_tag @pic.user.avatar, size:"40x40", class: "img-rounded" %>
+      <span class="username">
+          <%= @pic.user.username %>  &nbsp;
+          <% if current_user == @pic.user %>
+            <%= link_to '', edit_pic_path(@pic), class: "fas fa-pencil-alt", style: "text-decoration:none" %>
+          <% end %>
+      </span>
+  </div>
+
+    <%= image_tag(@pic.image, size: "400x400", class: "img-responsive center-block") %>
+
+    <p class="text-justify panel-body">
+
+      <%= linked_users @pic.caption %> <br>
+      <span class="time">
+      <%= time_ago_in_words(@pic.created_at) %></span>
+    </p>
+    <p>
+  <!-- <strong>Mentions:</strong>
+  <%= @pic.mentioned_users.to_a %>
+</p> -->
+
+</div>
+  <h4>Comments</h4>
+  <div class="panel pannel-default panel-body">
+    <%= render partial: "comments/comment", collection: @pic.comments %>
+
+  </div>
+
+
+
+  <%= form_for [@pic, Comment.new] do |f| %>
+
+    <%= f.text_area :body , placeholder: "write a comment", class: "form-control form-group",autofocus: true, data: {behavior: "autocomplete"}%>
+    <%= f.submit "comment", class: "btn btn-default form-group", style: "float:right"%>
+
+  <% end %>
+
+
+</div>

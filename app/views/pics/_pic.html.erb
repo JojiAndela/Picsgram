@@ -1,0 +1,100 @@
+<div class="pic-panel center-block" id="comment_<%=pic.id%>"  style="width:400px">
+    <div class="pic-head">
+
+        <span class="username">
+            <% if pic.user ==current_user %>&nbsp;
+            <%= link_to '', edit_pic_path(pic) , class: "fas fa-pencil-alt", style: "text-decoration:none"%>
+            <%= link_to '', pic, method: :delete, data: { confirm: 'Are you sure?' }, class: "fa fa-times text-danger", style: "text-decoration:none" %>
+            <% end %>
+        </span>
+        <span class="time">
+            <%= time_ago_in_words(pic.created_at) %> ago
+        </span>
+    </div>
+
+    <div class="pic-body">
+        <%= image_tag(pic.image, size: "400x400", class: "img-responsive") %>
+
+        <div class="like">
+            <%  @pic = pic %>
+
+            <span id="likec<%=pic.id%>"> <%= render 'likes/liketab' %> </span>
+            <span style="float: right">
+
+                <span id="heart<%=pic.id%>">
+                    <%= render 'likes/button'%>
+
+                </span >
+
+
+                &nbsp;&nbsp;<%= link_to '',pic, class: "far fa-comments fa-2x heartlike", style: "text-decoration:none; color:#ccc" %> </span>
+            </div>
+            <div class="cap">
+                <%= pic.caption.truncate_words(20) %> &nbsp;
+
+                <% if pic.caption.split.length > 20 %>
+                <%= link_to 'more', pic %>
+                <% end %>
+            </div>
+
+        </div>
+        <div class="pic-foot" id="comment<%=pic.id%>">
+            <% @count = pic.comments.count %>
+            <% @count -= 1 %>
+
+
+            <span class="comm" >
+                <% if pic.comments.count == 0 %>
+                <p>no comments</p>
+
+                <% elsif pic.comments.count==1 %>
+                <% pic.comments.order("created_at DESC").limit(1).each do |c| %>
+
+                <% if c.user == current_user %>
+                <p>
+                    you commented
+                </p>
+                <% else %>
+                <p>
+                    <%= c.user.username %> commented
+                </p>
+
+                <% end %>
+                <% end %>
+                <% else %>
+                <% pic.comments.order("created_at DESC").limit(1).each do |c| %>
+                <% if c.user == current_user %>
+                <p>you and <%= pluralize(@count, "other") %> commented</p>
+                <% else %>
+
+                <p> <%= c.user.username %> and <%= pluralize(@count, "other") %> commented</p>
+                <% end %>
+                <% end %>
+                <% end %>
+
+            </span>
+
+            <% pic.comments.order("created_at DESC").limit(2).each do |c| %>
+            <div class="comment-small">
+                <p>
+                    <%= image_tag c.user.avatar, size:"20x20",class: "img-rounded" %> &nbsp; <b>@<%=  link_to c.user.username, profile_path(c.user.username), style: "text-decoration:none"%>: </b> <%= linked_users c.body.truncate(30) %>
+                </p>
+
+            </div>
+
+            <% end %>
+
+
+            <%= form_for [pic, Comment.new]  do |f| %>
+            <div class="input-group btn-block">
+                <%= f.text_field :body, placeholder:"write a comment ...", class: "form-control" %>
+
+                <div class="input-group-btn">
+                    <%= f.submit 'comment',class: "btn btn-default",remote: true %>
+
+                </div>
+            </div>
+
+            <% end %>
+        </div>
+    </div>

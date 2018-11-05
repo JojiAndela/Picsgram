@@ -1,0 +1,93 @@
+
+.heartlike{
+&:hover{
+  font-size:2.5em;
+}
+
+}
+.head{
+  padding:10px;
+  color:white;
+  font-size: 14px;
+  // width:auto;
+  font-weight: bold;
+  background-color: purple;
+  margin-bottom: 20px;
+
+
+}
+.chatboxhead{
+  display: inline-block;
+  max-width: 400px;
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  padding:5px;
+  border-radius: 4px;
+  position: relative;
+}
+.messages{
+  overflow-y: scroll;
+  padding:10px;
+  height:400px;
+}
+.leftchat{
+  float:left;
+}
+.rightchat:after{
+  content: "";
+  clear: both;
+  display: inline-block;
+  position: absolute;
+  right: -8.5px;
+  top: 7px;
+  height: 0px;
+  width: 0px;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid #f1f1f1;
+}
+.rightchat:before{
+  content: "";
+  display: inline-block;
+  clear: both;
+    position: absolute;
+  right: -9px;
+  top: 7px;
+  height: 0px;
+  width: 0px;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid #dedede;
+}
+.rightchat{
+  float: right;
+  background-color: #f1f1f1;
+
+  border-color: #dedede;
+
+}
+.leftchat:after{
+  content: "";
+  display: inline-block;
+  position:absolute;
+  left: -9px;
+  height: 0px;
+  width: 0px;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid white;
+
+}
+.leftchat:before{
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: -8px;
+  height: 0px;
+  width: 0px;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid #ddd;
+}
+
+.clear{clear: both;}

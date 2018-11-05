@@ -1,0 +1,101 @@
+
+
+
+<div class="card-container center-block" style="width:500px; margin-top:100px">
+    <div class="card">
+        <div class="front">
+            <div class="cover">
+                <%= image_tag 'bacc' %>
+            </div>
+            <div class="user">
+                <%= image_tag @user.avatar, size:'120x120' %>
+            </div>
+            <div class="content">
+                <div class="main">
+                    <h3 class="name text-capitalize"> <%= @user.name%> </h3>
+                    <p class="profession"><%= @user.username %></p>
+                    <p class="text-center"> <%= @user.status %></p>
+                </div>
+                <div class="footer">
+                    <i class="far fa-mail-forward"></i> See Details
+                </div>
+            </div>
+        </div> <!-- end front panel -->
+        <div class="back">
+            <div class="header">
+                <!-- <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5> -->
+            </div>
+            <div class="content">
+                <div class="main">
+                    <h4 class="text-center"><%= @user.email%></h4>
+                    <p class="text-center"><%= @user.phone%></p>
+                    <% if @user.dob %>
+                    <p class="text-center"><%= @user.dob.strftime('%B, %d')%></p>
+                    <% end %>
+
+
+
+
+                    <div class="text-center">
+                        <% if @user.is_male %>
+                        <p class="text-center fas fa-mars " > Male</p>
+                        <% else %>
+                        <p class="text-center fas fa-venus "> Female</p>
+                        <% end %>
+                    </div>
+
+                    <div class="stats-container">
+                        <div class="stats">
+                            <h4 id="followers"><%= @user.followers.count %></h4>
+                            <p>
+                                <%= link_to "Followers",profile_followers_path(@user.username)%>
+                            </p>
+                        </div>
+                        <div class="stats">
+                            <h4><%= @user.following.count %></h4>
+                            <p>
+                                <%= link_to " Following",profile_following_path(@user.username)%>
+                            </p>
+                        </div>
+                        <div class="stats">
+                            <h4><%= @pics.count %></h4>
+                            <p>
+                                Memories
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="footer">
+            <div class="social-links text-center">
+
+                <% if @user == current_user %>
+                <%= link_to 'See Friends', friend_requests_path, class: "btn btn-info btn-sm" %>
+
+                <%= link_to 'Edit Profile', edit_user_registration_path, class: "btn btn-info btn-sm" %>
+                <% else %>
+
+                <span id="follow_form">
+                    <% if current_user.following?(@user) %>
+                    <%= render 'users/unfollow' %>
+                    <% else %>
+                    <%= render 'users/follow' %>
+                    <% end %>
+                </span>
+
+                <%= friend_button(@user) %><br>
+                <% end %>
+                </div>
+            </div>
+        </div> <!-- end back panel -->
+    </div> <!-- end card -->
+</div> <!-- end card-container -->
+
+
+<% if @pics.count != 0 %>
+
+    <%= render(partial: "pics/pic", collection: @pics) || "No memories on this timeline..." %>
+
+
+    <% end %>

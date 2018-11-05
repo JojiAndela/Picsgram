@@ -1,0 +1,8 @@
+
+
+    strong = link_to outgoing_request.friend.username, profile_path(outgoing_request.friend.username)
+    br
+    = pluralize(outgoing_request.friend.friends.where(id: current_user.friends).count, "mutual friend")
+
+
+    = link_to "Cancel", outgoing_request, method: :delete

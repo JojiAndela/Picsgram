@@ -1,0 +1,41 @@
+<div class='container-fluid' style="margin-top:70px">
+  <div class="head">
+
+    <% if !@reciever.nil? %>
+      <%= @reciever.username %>
+    <% else %>
+    <%= @chatroom.name %>
+
+    <% end %>
+  </div>
+
+  <% unread_messages = false %>
+  <div class="messages" id="message_list" data-behavior='messages' data-chatroom-id='<%= @chatroom.id %>'>
+    <% @messages.each do |message| %>
+      <% if !unread_messages && @chatroom_user.last_read_at < message.created_at %>
+        <% unread_messages = true %>
+        <div style="background-color:grey">
+          <div class="strike label label-default" ><span>Unread Messages</span></div>
+
+        </div>
+      <% end %>
+
+        <%= render message %>
+
+      <% end %>
+  </div>
+  <%= form_for [@chatroom, Message.new] do |f| %>
+
+<div class="input-group btn-block" style=" margin-bottom:50px">
+<!-- <span class="input-group-addon far fa-envelope"></span> -->
+    <%= f.text_area :body, rows: 1, class: "form-control", autofocus: true,style: "height:34px" %>
+    <div class="input-group-btn">
+      <%= f.submit  'send',class: "btn btn-info"%>
+
+    </div>
+  <% end %>
+
+</div>
+
+
+</div>

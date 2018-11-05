@@ -1,0 +1,20 @@
+<div class="panel panel-body panel-default">
+  <p class="text-justify">
+    <%=linked_users comment.body %> @ <%= comment.user.username %>
+     <span >
+       <% if current_user == comment.user %>
+         <%=link_to '',comment,method: :delete, data:{confirm:"are you sure ?"}, style: "text-decoration:none",class:"fas fa-times text-danger", title: "delete comment"  %>
+       <% end %>
+       </span>
+  </p>
+  <p> <%= link_to pluralize(comment.comments.count,"reply" ), "#reply#{comment.id}", id:"show-reply#{comment.id}",data:{toggle:"collapse"}%></p>
+    <button class="btn btn-default btn-xs fas fa-reply" data-toggle="modal" data-target="#myModal<%= comment.id %>" style="float:right">
+    </button><br>
+      <% @comment = comment %>
+        <%= render 'comments/modal' %>
+
+
+    <div  class="collapse" id="reply<%= @comment.id %>">
+      <%= render partial: 'comments/comment', collection: comment.comments %>
+    </div>
+</div>

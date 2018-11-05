@@ -1,0 +1,117 @@
+<div style ="margin-top: 100px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <h2 class="text-center">Edit <%= resource_name.to_s.humanize %></h2>
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= devise_error_messages! %>
+
+          <div class="custom-file-container" data-upload-id="myFirstImage">
+                   <label> <b>Upload an image</b> </label>
+                   <label style="float:right" ><a href="javascript:void(0)" class="custom-file-container__image-clear fas fa-times text-danger" title="Remove Image" style="text-decoration: none"></a></label>
+                   <label class="custom-file-container__custom-file" >
+                     <%= f.file_field :avatar,accept:"image/*", class: "custom-file-container__custom-file__custom-file-input form-control"%>
+                    <span class="custom-file-container__custom-file__custom-file-control"></span>
+                   </label>
+                   <div class="custom-file-container__image-preview"></div>
+               </div>
+
+           <div class="panel panel-default panel-body">
+             <div class="field form-group">
+               <div class="input-group margin-bottom-sm">
+               <span class="input-group-addon"><i class="far fa-user fa-fw"></i></span>
+               <%= f.text_field :username,class: "form-control", placeholder: 'Your Username',  :required => true %>
+             </div>
+             </div>
+            <div class="field form-group">
+              <div class="input-group margin-bottom-sm">
+              <span class="input-group-addon"><i class="far fa-envelope fa-fw"></i></span>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: "form-control", placeholder: 'Your Email',  :required => true%>
+            </div>
+            </div>
+
+            <div class="field form-group">
+              <div class="input-group margin-bottom-sm">
+              <span class="input-group-addon"><i class="far fa-address-card fa-fw"></i></span>
+              <%= f.text_field :firstname,class: "form-control" , placeholder: 'Your First Name',  :required => true%>
+            </div>
+            </div>
+
+            <div class="field form-group">
+              <div class="input-group margin-bottom-sm">
+              <span class="input-group-addon"><i class="far fa-address-card fa-fw"></i></span>
+                  <%= f.text_field :lastname,class: "form-control", placeholder: 'Your Last Name',  :required => true %>
+                </div>
+            </div>
+
+            <div class="field form-group">
+              <div class="input-group margin-bottom-sm">
+              <span class="input-group-addon"><i class="fas fa-phone fa-fw"></i></span>
+                        <%= f.telephone_field :phone,class: "form-control" , placeholder: 'Your Phone Number',  :required => true%>
+              </div>
+            </div>
+           </div>
+
+          <div class="field form-group">
+            <%= f.label :status %><br />
+            <%= f.text_area :status,class: "form-control" %>
+          </div>
+          <div class="field form-group">
+            <%= f.label "Date of birth" %><br />
+            <%= f.date_field :dob,use_month_numbers: false,class: "form-control" %>
+          </div>
+
+          <div class="panel panel-body panel-default">
+              <div class="field form-group ">
+              <%= f.label :gender%> <br>
+              <%= f.radio_button :is_male, false %> <%= f.label :is_male, "Female   " %> &nbsp;&nbsp;&nbsp;&nbsp;
+              <%= f.radio_button :is_male, true %> <%= f.label :is_male, "Male" %>
+            </div>
+          </div>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+
+          <div class="panel panel-default panel-body">
+            <div class="field form-group">
+              <%= f.label :password %> <i>(leave blank if you don't want to change your password)</i><br />
+              <%= f.password_field :password, autocomplete: "off" ,class: "form-control"%>
+              <% if @minimum_password_length %>
+                <br />
+                <em><%= @minimum_password_length %> characters minimum</em>
+              <% end %>
+            </div>
+
+            <div class="field form-group">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "off",class: "form-control" %>
+            </div>
+          </div>
+
+          <div class="field form-group panel panel-default panel-body">
+            <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+            <%= f.password_field :current_password, autocomplete: "off" ,class: "form-control"%>
+          </div>
+
+          <div class="actions form-group">
+            <%= f.submit "Update", class: "btn btn-info center-block" %>
+          </div>
+        <% end %>
+
+          <div class="panel panel-default panel-body">
+
+                    <h3>Cancel my account</h3>
+
+                    <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , class: "btn btn-danger"%></p>
+
+
+          </div>
+      </div>
+      <div class="col-xs-12 col-md-4" style="padding-top:100px">
+        <%= image_tag current_user.avatar, size:'300x300', class: "img-rounded pull-right img-responsive", style: "border: solid 1px gray" %>
+        <h2 class="text-center">Current Avatar</h2>
+      </div>
+    </div>
+  </div>
+</div>

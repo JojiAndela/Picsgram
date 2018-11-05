@@ -1,0 +1,134 @@
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+
+
+.vertical-align{
+  display: table;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  }
+
+  .vertical-align-center{
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
+  }
+  .modal-content{
+    width: inherit;
+    height: inherit;
+    margin: 0 auto;
+    pointer-events: all;
+  }
+a.hidden{
+  display: none;
+}
+.navbar-default {
+  background-color: #ab47bc;
+  height: 60px;
+  color: #46078a;
+  .navbar-brand {
+
+      color: #46078a;
+      font-family: cursive;
+      font-weight: bold;
+      font-size:30px;
+      // text-decoration: overline;
+      text-shadow: 4px -4px 4px white;
+
+  }
+  .navbar-brand:hover,.navbar-brand:focus {
+    color: #fff;
+    text-shadow: 4px 4px 1px #46078a;
+
+    background-color: transparent;
+  }
+  .navbar-nav li a {
+    color: #125688;
+    margin-top: 5px;
+    font-weight: bold;
+    &:hover{
+    color:#fff;
+    }
+  }
+}
+.pic-panel{
+  width:600px;
+  border: 1px solid #ccc;
+  margin-top:20px;
+  margin-bottom:20px;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 -5px 5px #ccc ;
+          box-shadow: inset 0 -5px 5px #ccc;
+}
+
+.pic-head{
+  padding:10px;
+}
+.username{
+  font-size: 16px;
+  color: #7b1fa2;
+  font-family: cursive;
+
+}
+.comment-small{
+  font-size:10px;
+  color: black;
+  font-family: cursive;
+}
+.cap{
+  padding:10px;
+  font-size:12px;
+  font-weight: bold;
+  font-family: "Trebuchet MS";
+}
+.pic-foot{
+  padding:10px;
+}
+.comm{
+  color: #ccc;
+  font-style: italic;
+  font-size: 10px;
+  float: right;
+}
+.time{
+  color: #e1bee7;
+  font-style: italic;
+  font-size: 12px;
+  float: right;
+}
+.btn-purple{
+  background-color: #6708ce;
+  border-color: #6708ce;
+  color:white;
+
+  &:hover{
+    background-color: #46078a;
+    border-color: #6708ce;
+    color:white;
+  }
+}
+
+.like{
+  padding:10px;
+}
+.btn-pink{
+  background-color: #ea198f;
+  border-color: #ea198f;
+  color:white;
+
+  &:hover{
+    background-color: #ba0d6f ;
+    border-color: #ea198f;
+    color:white;
+  }
+}
+
+.form-p{
+  border-color: transparent;
+  -webkit-box-shadow: inset 0 -1px 0 #6708ce ;
+          box-shadow: inset 0 -1px 0 #6708ce;
+}

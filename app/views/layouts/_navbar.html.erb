@@ -1,0 +1,56 @@
+<% if user_signed_in? %>
+<nav class="navbar navbar-default navbar-static-top navbar-fixed-top " >
+
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" id="menu-toggle" class="navbar-toggle" data-toggle="collapse" data-target = "#mobile">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar bar1"></span>
+        <span class="icon-bar bar2"></span>
+        <span class="icon-bar bar3"></span>
+      </button>
+
+      <%= link_to "Picsgram", root_path, class: "navbar-brand" %>
+    </div>
+    <div class="collapse navbar-collapse" id="mobile">
+      <ul class="nav navbar-nav ">
+        <li> <%= link_to "Home", root_path, class: "navlink" %> </li>
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+
+
+        <li>  <%= link_to image_tag(current_user.avatar, size:"40x40", class: "img-circle navlink"), profile_path(current_user.username), style: "margin-top:-5px;" %> </li>
+        <li>  <%= link_to current_user.username.capitalize,profile_path(current_user.username) , class: "navlink"%> </li>
+
+        <li class="nav-item btn-group" data-behavior="notifications" data-notifications='<%= render template: "notifications/index", formats: [:json] %>'>
+          <a class="dropdown-toggle nav-link fas fa-bell" type="button" data-behavior="notifications-link" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span data-behavior="unread-count">0</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu1" data-behavior="notification-items">
+
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+
+        </div>
+      </li>
+
+
+<li> <%= link_to "Sign Out", destroy_user_session_path,method: :delete, data:{confirm: "Are you sure that you want to leave Picsgram ?"}, class: "navlink" %> </li>
+
+<% end %>
+</ul>
+
+
+
+</div>
+
+
+</div>
+
+</nav>
+
+<% end %>

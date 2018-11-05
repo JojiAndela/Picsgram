@@ -1,0 +1,7 @@
+
+
+<% if current_user.like?(@pic) %>
+  <%= link_to '', unlike_path(pic_id: @pic.id), method: :delete, remote: true, class: "fas fa-heart fa-2x heartlike", style: "text-decoration:none; color: tomato", title:"unlike" %>
+<% else %>
+  <%= link_to '', like_path(pic_id: @pic.id), method: :post, remote: true, class: "far fa-heart fa-2x heartlike", style: "text-decoration:none; color: #ccc", title:"like"%>
+<% end %>

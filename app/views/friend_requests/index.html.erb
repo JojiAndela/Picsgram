@@ -1,0 +1,48 @@
+<div class="" style="margin-top:100px">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"> Incoming Request </h3>
+          </div>
+          <div class="panel-body">
+            <% if @incoming.count != 0 %>
+            <% @incoming.each do |inc| %>
+              <%= inc.user.username  %> <%= link_to "accept",inc,method: :patch ,class: "btn btn-primary" %>  <br>
+            <% end %>
+            <% end %>
+          </div>
+          <div class="panel-footer">
+            <% if @incoming.count != 0 %>
+            <%= @incoming.count %>
+            <% else %>
+            <p>no request</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"> Awaiting Request </h3>
+          </div>
+          <div class="panel-body">
+              <% if @outgoing.count != 0 %>
+            <% @outgoing.each do |out| %>
+              <%=link_to out.friend.username, profile_path(out.friend.username)  %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="panel-footer">
+            <% if @outgoing.count != 0 %>
+              <%= @outgoing.count %>
+            <% else %>
+            <p>no request</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="panel panel-body panel-default center-block" style="width:400px;" >
+  <%= form_with(model: pic, local: true) do |form| %>
+    <% if pic.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(pic.errors.count, "error") %> prohibited this pic from being saved:</h2>
+
+        <ul>
+        <% pic.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group center-block">
+      <div class="custom-file-container" data-upload-id="myFirstImage">
+               <label> <b>Upload an image</b> </label>
+               <label style="float:right" ><a href="javascript:void(0)" class="custom-file-container__image-clear fas fa-times text-danger" title="Remove Image" style="text-decoration: none"></a></label>
+               <label class="custom-file-container__custom-file" >
+                 <%= form.file_field :image,accept:"image/*", class: "custom-file-container__custom-file__custom-file-input form-control"%>
+                <span class="custom-file-container__custom-file__custom-file-control"></span>
+               </label>
+               <div class="custom-file-container__image-preview"></div>
+           </div>
+
+
+     </div>
+
+    <div class="field form-group">
+
+      <%= form.text_area :caption, id: :pic_caption, class: "form-control", placeholder: "write a caption ...", data: {behavior: "autocomplete"}  %>
+    </div>
+
+
+
+    <div class="actions form-group">
+      <%= form.submit "Share your Memory" , class: "btn btn-purple btn-block"%>
+    </div>
+  <% end %>
+
+</div>

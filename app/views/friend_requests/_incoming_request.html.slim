@@ -1,0 +1,7 @@
+
+    strong = link_to incoming_request.user.username, profile_path(incoming_request.user.username)
+    br
+    = pluralize(incoming_request.user.friends.where(id: current_user.friends).count, "mutual friend")
+
+
+    = link_to "Accept", incoming_request, method: :patch

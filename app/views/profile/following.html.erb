@@ -1,0 +1,22 @@
+<div class="" style="margin-top:100px">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Following </h3>
+          </div>
+          <div class="panel-body">
+            <% if @followings.count != 0 %>
+            <% @followings.each do |flg| %>
+              <%= link_to flg.username, profile_path(flg.username) %><br>
+            <% end %>
+            <% end %>
+          </div>
+          <div class="panel-footer">
+            <% if @followings.count != 0 %>
+            <%= @followings.count %>
+            <% else %>
+            <p>no followers</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
